@@ -19,7 +19,7 @@ run fileToSaveIn = do
 
   (addUserInputEvent, fireUserInputEvent) <- newAddHandler
 
-  actuate =<< compile $ let
+  actuate =<< compile (let
     bState :: Behavior CompleteState
     bState = makeBState addUserInputEvent fireUserInputEvent
-    in changes bState >>= (reactimate' . fmap (saveStateHandler fileToSaveIn))
+    in changes bState >>= (reactimate' . fmap (saveStateHandler fileToSaveIn)))
